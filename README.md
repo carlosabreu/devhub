@@ -6,3 +6,9 @@ DevHub é um projeto proposto pelo <a href="https://www.linkedin.com/in/alex-fel
 A primeira tarefa é criar o projeto com o Jetpack Compose e a primeira tela colocando estaticamente a foto do github, o nome, o nome de usuário e a biografia do github.
 
 <img src="./screenshots/tarefa1.png" width="300"/>
+
+
+### Tarefa 2
+A segunda tarefa é melhorar a aparência do layout, centralizando a imagem, os textos, colocar negrito, tamanho de fonte, etc.
+
+<img src="./screenshots/tarefa2.png" width="300"/>
