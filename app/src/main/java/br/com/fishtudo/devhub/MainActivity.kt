@@ -3,7 +3,6 @@ package br.com.fishtudo.devhub
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -19,19 +18,24 @@ import androidx.compose.ui.Alignment.Companion.BottomCenter
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fishtudo.devhub.ui.theme.DevHubTheme
+import coil.compose.AsyncImage
+
+const val IMAGE_URL = "https://avatars.githubusercontent.com/u/3848784?v=4"
+const val IMAGE_DESCRIPTION = "Imagem do usuário"
+const val USER_NAME = "Carlos Abreu"
+const val GITHUB_USERNAME = "carlosabreu"
+const val GITHUB_USER_BIO = "Mobile developer at Banco do Brasil!"
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             DevHubTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
@@ -71,12 +75,13 @@ fun ProfileScreen() {
                     .background(Color(0xFF393939))
                     .height(boxHeight)
             )
-            Image(
-                painterResource(id = R.drawable.github_profile),
-                contentDescription = "Imagem do usuário",
+            AsyncImage(
+                model = IMAGE_URL,
+                contentDescription = IMAGE_DESCRIPTION,
                 modifier = Modifier
                     .align(BottomCenter)
                     .height(imageHeight)
+                    .width(imageHeight)
                     .offset(x = 0.dp, y = offSet)
                     .clip(CircleShape)
                     .border(2.dp, Color.Gray, CircleShape)
@@ -86,23 +91,20 @@ fun ProfileScreen() {
         Spacer(modifier = Modifier.size(offSet))
 
         Text(
-            text = "Carlos Abreu",
+            text = USER_NAME,
             fontSize = 35.sp,
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
+            modifier = Modifier.align(Alignment.CenterHorizontally)
         )
         Text(
-            text = "carlosabreu",
+            text = GITHUB_USERNAME,
             fontSize = 22.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
+            modifier = Modifier.align(Alignment.CenterHorizontally)
         )
         Text(
-            text = "Mobile developer at Banco do Brasil!",
+            text = GITHUB_USER_BIO,
             fontSize = 24.sp,
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
+            modifier = Modifier.align(Alignment.CenterHorizontally)
         )
     }
 }
