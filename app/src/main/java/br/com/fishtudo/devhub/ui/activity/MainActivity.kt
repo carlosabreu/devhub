@@ -1,4 +1,4 @@
-package br.com.fishtudo.devhub
+package br.com.fishtudo.devhub.ui.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -18,10 +18,12 @@ import androidx.compose.ui.Alignment.Companion.BottomCenter
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import br.com.fishtudo.devhub.R
 import br.com.fishtudo.devhub.ui.theme.DevHubTheme
 import coil.compose.AsyncImage
 
@@ -78,6 +80,7 @@ fun ProfileScreen() {
             AsyncImage(
                 model = IMAGE_URL,
                 contentDescription = IMAGE_DESCRIPTION,
+                placeholder = painterResource(R.drawable.user_placeholder),
                 modifier = Modifier
                     .align(BottomCenter)
                     .height(imageHeight)
