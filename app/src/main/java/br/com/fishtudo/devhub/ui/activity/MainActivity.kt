@@ -12,6 +12,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.BottomCenter
@@ -24,16 +26,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.fishtudo.devhub.R
+import br.com.fishtudo.devhub.viewmodel.UserViewModel
+import br.com.fishtudo.devhub.repository.data.User
 import br.com.fishtudo.devhub.ui.theme.DevHubTheme
+import br.com.fishtudo.devhub.util.IMAGE_DESCRIPTION
 import coil.compose.AsyncImage
-
-const val IMAGE_URL = "https://avatars.githubusercontent.com/u/3848784?v=4"
-const val IMAGE_DESCRIPTION = "Imagem do usuário"
-const val USER_NAME = "Carlos Abreu"
-const val GITHUB_USERNAME = "carlosabreu"
-const val GITHUB_USER_BIO = "Mobile developer at Banco do Brasil!"
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class MainActivity : ComponentActivity() {
+    var viewModel: UserViewModel = UserViewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -42,7 +44,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    ProfileScreen()
+                    ProfileScreen(viewModel.requestUserDataWithCallback())
                 }
             }
         }
@@ -50,7 +52,9 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(state: MutableStateFlow<User>) {
+    val user: State<User> = state.collectAsState()
+
     Column {
         val boxHeight = remember {
             150.dp
@@ -78,7 +82,7 @@ fun ProfileScreen() {
                     .height(boxHeight)
             )
             AsyncImage(
-                model = IMAGE_URL,
+                model = user.value.avatar_url,
                 contentDescription = IMAGE_DESCRIPTION,
                 placeholder = painterResource(R.drawable.user_placeholder),
                 modifier = Modifier
@@ -91,21 +95,22 @@ fun ProfileScreen() {
             )
         }
 
+
         Spacer(modifier = Modifier.size(offSet))
 
         Text(
-            text = USER_NAME,
+            text = user.value.name,
             fontSize = 35.sp,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
         Text(
-            text = GITHUB_USERNAME,
+            text = user.value.login,
             fontSize = 22.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
         Text(
-            text = GITHUB_USER_BIO,
+            text = user.value.bio,
             fontSize = 24.sp,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
@@ -115,7 +120,8 @@ fun ProfileScreen() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
+    val mockedUser = User("Nome", "Login", "Biografia")
     DevHubTheme {
-        ProfileScreen()
+        ProfileScreen(MutableStateFlow(mockedUser))
     }
 }
