@@ -23,3 +23,8 @@ A terceira tarefa é utilizar a biblioteca Coil para que a imagem seja baixada d
 ### Tarefa 4
 
 A quarta tarefa é utilizar a biblioteca Retrofit para baixar os dados do usuário do github. Para essa tarefa, resolvi implementar tanto utilizando callbacks quanto  coroutines. Essa tarefa não afetou o app visualmente.
+
+
+### Tarefa 5
+
+A quinta tarefa é apresentar os dados recebidos pelo retrofit em tela. Por deslize, acabei implementando essa tarefa junto com a tarefa 4. Então, hoje, apenas fiz um pequeno refactory. Essa tarefa não afetou o app visualmente.

@@ -1,7 +1,7 @@
-package br.com.fishtudo.devhub.repository
+package br.com.fishtudo.devhub.network
 
 
-import br.com.fishtudo.devhub.repository.service.GithubService
+import br.com.fishtudo.devhub.network.service.GithubService
 import br.com.fishtudo.devhub.util.GITHUB_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
