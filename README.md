@@ -28,3 +28,6 @@ A quarta tarefa é utilizar a biblioteca Retrofit para baixar os dados do usuár
 ### Tarefa 5
 
 A quinta tarefa é apresentar os dados recebidos pelo retrofit em tela. Por deslize, acabei implementando essa tarefa junto com a tarefa 4. Então, hoje, apenas fiz um pequeno refactory. Essa tarefa não afetou o app visualmente.
+
+### Tarefa 6
+A sexta tarefa é separar o componente composable da activity, visando reduzir o acoplamento e melhorar o reuso futuro. Essa tarefa não afetou o app visualmente.

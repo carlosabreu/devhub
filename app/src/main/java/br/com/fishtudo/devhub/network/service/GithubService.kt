@@ -10,8 +10,5 @@ import retrofit2.http.Path
 interface GithubService {
 
     @GET(PATH_LIST_USER)
-    fun requireUserDataUsingCallbacks(@Path("userName") userName: String): Call<GithubUser>
-
-    @GET(PATH_LIST_USER)
     suspend fun requireUserDataUsingCoroutines(@Path("userName") userName: String): Response<GithubUser>
 }
