@@ -13,7 +13,7 @@ import br.com.fishtudo.devhub.util.GITHUB_USERNAME
 import br.com.fishtudo.devhub.viewmodel.UserViewModel
 
 class MainActivity : ComponentActivity() {
-    var viewModel: UserViewModel = UserViewModel()
+    private var viewModel: UserViewModel = UserViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
